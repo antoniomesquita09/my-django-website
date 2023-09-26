@@ -42,3 +42,13 @@ python3 manage.py runserver
 ```
 
 Check out your first website on [http://localhost:8000](http://localhost:8000)
+
+## Admin
+
+Create superuser to manage your database information
+
+```bash
+python manage.py createsuperuser
+```
+
+Check out your admin page on [http://localhost:8000/admin](http://localhost:8000/admin)
