@@ -1,0 +1,32 @@
+<!-- base.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Lift App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Lift App</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'ride_list' %}">Rides</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>&copy; 2023 Lift App. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+

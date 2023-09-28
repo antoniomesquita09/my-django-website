@@ -1,0 +1,14 @@
+{% extends 'MeuApp/base.html' %}
+
+{% block title %}Ride List - My Lift App{% endblock %}
+
+{% block content %}
+    <section id="rides">
+        <h2>Available Rides</h2>
+        <ul>
+            {% for ride in rides %}
+                <li>{{ ride }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
