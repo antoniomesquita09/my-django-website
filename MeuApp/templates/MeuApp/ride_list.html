@@ -1,17 +1,44 @@
-<!-- MeuApp/templates/MeuApp/ride_list.html -->
 {% extends 'MeuApp/base.html' %}
+
 {% block content %}
-  <h2>Available Rides</h2>
-  <ul>
-    {% for ride in rides %}
-      <li>{{ ride }}</li>
-    {% endfor %}
-  </ul>
-  <h2>Add a Ride</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Ride</button>
-  </form>
-  
+    <h2>Ride List</h2>
+    <ul>
+        {% for ride in rides %}
+            <li id="ride-{{ ride.id }}">
+                <strong>Driver:</strong> {{ ride.driver.user.username }} <br>
+                <strong>Departure Time:</strong> {{ ride.departure_time }} <br>
+                <strong>Destination:</strong> {{ ride.destination }} <br>
+                <strong>Free Seats:</strong> <span class="free-seats">{{ ride.free_seats }}</span> <br>
+                <strong>Passengers:</strong> <span class="passengers"></span> <br>
+                <input type="text" placeholder="Type name here" class="passenger-input"/>
+                <button onclick="addPassenger({{ ride.id }})">Add Passenger</button>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <script>
+        function addPassenger(rideId) {
+            var rideElement = document.getElementById('ride-' + rideId);
+            var inputElement = rideElement.querySelector('.passenger-input');
+            var passengersElement = rideElement.querySelector('.passengers');
+            var freeSeatsElement = rideElement.querySelector('.free-seats');
+            
+            var passengerName = inputElement.value.trim();
+            if(passengerName === '' || parseInt(freeSeatsElement.textContent) <= 0) {
+                return; // Don't do anything if the input is empty or no free seats available
+            }
+            
+            // Append passenger name to passengers list
+            if(passengersElement.textContent !== '') {
+                passengersElement.textContent += ', ';
+            }
+            passengersElement.textContent += passengerName;
+            
+            // Decrease the number of free seats
+            freeSeatsElement.textContent = parseInt(freeSeatsElement.textContent) - 1;
+            
+            // Clear the input
+            inputElement.value = '';
+        }
+    </script>
 {% endblock %}

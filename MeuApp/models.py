@@ -24,19 +24,14 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 class Ride(models.Model):
-    driver = models.ForeignKey('MeuApp.Profile', on_delete=models.CASCADE, related_name='rides_as_driver')
-    passenger = models.ForeignKey('MeuApp.Profile', on_delete=models.CASCADE, related_name='rides_as_passenger')
+    driver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='rides_as_driver')
+    passengers = models.ManyToManyField(Profile, related_name='rides_as_passenger', blank=True)
     destination = models.CharField(max_length=255)
-    departure_time = models.DateTimeField()
-    free_seats = models.PositiveIntegerField(default=1)  # Adjust default as per your needs
+    departure_time = models.TimeField()
+    free_seats = models.PositiveIntegerField(default=3)  # Adjust default as per your needs
 
     def __str__(self):
-        return f"Driver: {self.driver}, Destination: {self.destination}, Departure Time: {self.departure_time}, Free Seats: {self.free_seats}"
-    
-    class Meta:
-        ordering = ['departure_time']
-        permissions = [('can_give_ride', 'Can give a ride')]
-        default_permissions = ('add', 'change', 'delete', 'view')
+        return f"Driver: {self.driver}, Destination: {self.destination}, Departure Time: {self.departure_time}"
 
     def get_queryset(self):
         # Adjust your queryset to filter related Driver model.
