@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 
 from contatos.forms import ContatoModel2Form
@@ -26,3 +26,22 @@ class ContatoCreateView(View):
             contato = formulario.save()
             contato.save()
             return HttpResponseRedirect(reverse_lazy('contatos:lista-contatos'))
+
+
+class ContatoUpdateView(View):
+    def get(self, request, pk, *args, **kwargs):
+        pessoa = Pessoa.objects.get(pk=pk)
+        formulario = ContatoModel2Form(instance=pessoa)
+        context = {'pessoa': formulario}
+        return render(request, 'contatos/atualizaContato.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        pessoa = get_object_or_404(Pessoa, pk=pk)
+        formulario = ContatoModel2Form(request.POST, instance=pessoa)
+        if formulario.is_valid():
+            pessoa = formulario.save()
+            pessoa.save()
+            return HttpResponseRedirect(reverse_lazy('contatos:lista-contatos'))
+        else:
+            context = {'pessoa': formulario}
+            return render(request, 'contatos/atualizaContato.html', context)
