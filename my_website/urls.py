@@ -4,8 +4,8 @@ from django.contrib import admin
 from MeuApp import views
 
 urlpatterns = [
-    path('MeuApp/', include('MeuApp.urls', namespace='MeuApp')), # Define the namespace here
+    # Define the namespace here
+    path('MeuApp/', include('MeuApp.urls', namespace='MeuApp')),
     path('admin/', admin.site.urls),
-
-
+    path("contatos/", include('contatos.urls')),
 ]
