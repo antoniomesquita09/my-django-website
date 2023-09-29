@@ -28,8 +28,11 @@ class Ride(models.Model):
     passenger = models.ForeignKey('MeuApp.Profile', on_delete=models.CASCADE, related_name='rides_as_passenger')
     destination = models.CharField(max_length=255)
     departure_time = models.DateTimeField()
+    free_seats = models.PositiveIntegerField(default=1)  # Adjust default as per your needs
+
     def __str__(self):
-        return f"Driver: {self.driver}, Passenger: {self.passenger}, Destination: {self.destination}, Departure Time: {self.departure_time}"
+        return f"Driver: {self.driver}, Destination: {self.destination}, Departure Time: {self.departure_time}, Free Seats: {self.free_seats}"
+    
     class Meta:
         ordering = ['departure_time']
         permissions = [('can_give_ride', 'Can give a ride')]
@@ -38,3 +41,4 @@ class Ride(models.Model):
     def get_queryset(self):
         # Adjust your queryset to filter related Driver model.
         return Ride.objects.filter(driver__is_available=True)
+    

@@ -1,17 +1,8 @@
-<!-- MeuApp/templates/MeuApp/ride_list.html -->
 {% extends 'MeuApp/base.html' %}
 {% block content %}
-  <h2>Available Rides</h2>
-  <ul>
-    {% for ride in rides %}
-      <li>{{ ride }}</li>
-    {% endfor %}
-  </ul>
-  <h2>Add a Ride</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Add Ride</button>
   </form>
-  
 {% endblock %}
