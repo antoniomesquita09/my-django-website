@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from django.views.generic import UpdateView
 
 
 # função que retorna True/False
@@ -33,3 +35,19 @@ def registro(request):
 @user_passes_test(testaAcesso)
 def paginaSecreta(request):
     return render(request, 'registro/paginaSecreta.html')
+
+
+class MeuLoginView(LoginView):
+    def get(self, request, *args, **kwargs):
+        if request.user.id is None:
+            return super().get(request, args, kwargs)
+        else:
+            return redirect('sec-home')
+
+
+class MeuUpdateView(UpdateView):
+    def get(self, request, pk, *args, **kwargs):
+        if request.user.id == pk:
+            return super().get(request, pk, args, kwargs)
+        else:
+            return redirect('sec-home')
