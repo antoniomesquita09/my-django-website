@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LogoutView, PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetConfirmView, \
+    PasswordResetDoneView, PasswordResetView, PasswordResetCompleteView
 from django.urls import path, reverse_lazy
 from django.urls import include
 from django.contrib import admin
@@ -35,4 +36,22 @@ urlpatterns = [
                  'email',
              ],
          ), name='sec-completaDadosUsuario'),
+    path('accounts/password_reset/', PasswordResetView.as_view(
+        template_name='registro/password_reset_form.html',
+        success_url=reverse_lazy('sec-password_reset_done'),
+        html_email_template_name='registro/password_reset_email.html',
+        subject_template_name='registro/password_reset_subject.txt',
+        from_email='webmaster@meslin.com.br',
+    ), name='password_reset'),
+    path('accounts/password_reset_done/', PasswordResetDoneView.as_view(
+        template_name='registro/password_reset_done.html',
+    ), name='sec-password_reset_done'),
+    path('accounts/password_reset_confirm/<uidb64>/<token>/',
+         PasswordResetConfirmView.as_view(
+             template_name='registro/password_reset_confirm.html',
+             success_url=reverse_lazy('sec-password_reset_complete'),
+         ), name='password_reset_confirm'),
+    path('accounts/password_reset_complete/', PasswordResetCompleteView.as_view(
+        template_name='registro/password_reset_complete.html'
+    ), name='sec-password_reset_complete'),
 ]
