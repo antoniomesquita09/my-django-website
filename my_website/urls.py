@@ -10,9 +10,11 @@ from MeuSite.views import MeuLoginView, MeuUpdateView
 
 urlpatterns = [
     # Define the namespace here
-    path('MeuApp/', include('MeuApp.urls', namespace='MeuApp')),
+    path('caronas/', include('MeuApp.urls')),
     path('admin/', admin.site.urls),
     path("contatos/", include('contatos.urls')),
+
+    # All paths related to auth
     path('accounts/', views.homeSec, name='sec-home'),
     path('accounts/registro/', views.registro, name='sec-registro'),
     path('accounts/login/', MeuLoginView.as_view(template_name='registro/login.html'), name='sec-login'),

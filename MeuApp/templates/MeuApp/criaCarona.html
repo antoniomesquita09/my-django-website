@@ -1,0 +1,15 @@
+{% extends 'registro/base.html' %}
+{% block title %}Homepage de Segurança{% endblock %}
+{% block content %}
+    <h1>Cria uma carona</h1>
+    <form action="" method="POST">
+        <fieldset style="width: max-content;">
+{#        <legend>Formulário de Cadastro</legend>#}
+        {% csrf_token %}
+        <table class='formulario'>
+            {{ formulario.as_table }}
+        </table>
+        <button type="submit">Criar carona</button>
+    </fieldset>
+    </form>
+{% endblock %}
