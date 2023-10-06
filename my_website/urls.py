@@ -1,12 +1,17 @@
-from django.urls import path
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetConfirmView, \
+    PasswordResetDoneView, PasswordResetView, PasswordResetCompleteView
+from django.urls import path, reverse_lazy
 from django.urls import include
 from django.contrib import admin
-from MeuApp import views
+
+from MeuSite import views
+from MeuSite.views import MeuLoginView, MeuUpdateView
 
 urlpatterns = [
-    path('MeuApp/', include('MeuApp.urls', namespace='MeuApp')), # Define the namespace here
+    # Define the namespace here
+    path('MeuApp/', include('MeuApp.urls', namespace='MeuApp')),
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),  # Add this line
 
 
 ]

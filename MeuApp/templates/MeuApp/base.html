@@ -6,7 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}My Lift App{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{%static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
@@ -20,9 +22,9 @@
                 <li><a href="{% url 'MeuApp:add_ride' %}">Add Ride</a></li> <!-- New Link -->
                 <li><a href="#contact">Contact</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+                    <li><a href="{% url 'MeuApp:logout' %}?next={{ request.path }}">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                    <li><a href="{% url 'MeuApp:login' %}?next={{ request.path }}">Login</a></li>
                 {% endif %}
             </ul>
             

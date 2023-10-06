@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'MeuApp',
-    'contatos'
+    'contatos',
+    'MeuSite'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,10 @@ import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'MeuApp' '/static'),
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tonintech@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'tonintech@gmail.com'
