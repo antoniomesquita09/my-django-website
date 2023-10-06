@@ -22,15 +22,7 @@ class RideModel2Form(forms.ModelForm):
         min_value=1,
         required=True,
     )
-    # passengers = models.ManyToManyField(Profile, related_name='rides_as_passenger', blank=True)
-    # destination = models.CharField(max_length=255)
-    # departure_time = models.TimeField()
-    # free_seats = models.PositiveIntegerField(default=3)  # Adjust default as per your needs
 
     class Meta:
         model = Ride
-        fields = ['departure_time', 'destination', 'free_seats']
-
-
-class JoinRideForm(forms.Form):
-    user_name = forms.CharField(max_length=100)
+        fields = '__all__'

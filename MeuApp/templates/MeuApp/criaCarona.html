@@ -7,7 +7,9 @@
 {#        <legend>Formulário de Cadastro</legend>#}
         {% csrf_token %}
         <table class='formulario'>
-            {{ formulario.as_table }}
+            <label for="destination">destination</label><input id="destination" type="text" name="destination" required>
+            <label for="departure_time">departure_time</label><input id="departure_time" type="time" name="departure_time" required>
+            <label for="free_seats">free_seats</label><input id="free_seats" type="number" name="free_seats" required>
         </table>
         <button type="submit">Criar carona</button>
     </fieldset>
