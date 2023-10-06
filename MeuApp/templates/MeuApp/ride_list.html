@@ -4,16 +4,18 @@
     <h2>Ride List</h2>
     <ul>
         {% for ride in rides %}
-            <li id="ride-{{ ride.id }}">
-                <strong>Driver:</strong> {{ ride.driver.user.username }} <br>
-                <strong>Departure Time:</strong> {{ ride.departure_time }} <br>
-                <strong>Destination:</strong> {{ ride.destination }} <br>
-                <strong>Free Seats:</strong> <span class="free-seats">{{ ride.free_seats }}</span> <br>
-                <strong>Passengers:</strong> <span class="passengers"></span> <br>
-                <input type="text" placeholder="Type name here" class="passenger-input"/>
-                <button onclick="addPassenger({{ ride.id }})">Add Passenger</button>
-            </li>
-        {% endfor %}
+    <li>
+        <strong>Driver:</strong> {{ ride.driver.user.username }} <br>
+        <strong>Departure Time:</strong> {{ ride.departure_time }} <br>
+        <strong>Destination:</strong> {{ ride.destination }} <br>
+        <strong>Free Seats:</strong> {{ ride.free_seats }}
+        <form method="post" action="{% url 'MeuApp:join_ride' ride.id %}
+        ">
+            {% csrf_token %}
+            <button type="submit">Join Ride</button>
+        </form>
+    </li>
+{% endfor %}
     </ul>
     
     <script>

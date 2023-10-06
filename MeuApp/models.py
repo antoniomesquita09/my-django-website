@@ -9,10 +9,6 @@ from django.views.generic import ListView
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # additional fields can be added here
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birthdate = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -28,11 +24,9 @@ class Ride(models.Model):
     passengers = models.ManyToManyField(Profile, related_name='rides_as_passenger', blank=True)
     destination = models.CharField(max_length=255)
     departure_time = models.TimeField()
-    free_seats = models.PositiveIntegerField(default=3)  # Adjust default as per your needs
-
+    free_seats = models.PositiveIntegerField(default=4)
     def __str__(self):
         return f"Driver: {self.driver}, Destination: {self.destination}, Departure Time: {self.departure_time}"
-
     def get_queryset(self):
         # Adjust your queryset to filter related Driver model.
         return Ride.objects.filter(driver__is_available=True)
