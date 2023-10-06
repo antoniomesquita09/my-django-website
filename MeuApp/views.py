@@ -10,7 +10,17 @@ from django.http import HttpResponseBadRequest
 from .models import Ride, Profile
 from .forms import RideForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
 
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'  # Point to your custom template if needed
+    redirect_authenticated_user = True  # If True, authenticated users will be redirected to LOGIN_REDIRECT_URL
+    # Add more customization if needed
+
+class CustomLogoutView(LogoutView):
+    next_page = 'MeuApp/home'  # Replace with your URL name
 
 def ride_list(request):
     rides = Ride.objects.all()

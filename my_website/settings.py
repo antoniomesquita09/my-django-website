@@ -73,6 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_website.wsgi.application'
 
+LOGIN_REDIRECT_URL = '/MeuApp/'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

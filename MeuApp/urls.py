@@ -12,4 +12,7 @@ urlpatterns = [
     # path('join_ride/', views.join_ride, name='join_ride'), # Ensure this exists
     path('ride_list/', views.ride_list, name='ride_list'),
     # path('admin/', admin.site.urls),
+    path('accounts/login/', views.CustomLoginView.as_view(), name='login'),
+    path('accounts/logout/', views.CustomLogoutView.as_view(), name='logout'),
+
 ]
