@@ -1,32 +1,32 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Orbitron', sans-serif;
-    background-color: #121212; /* Dark gray background */
-    color: #e0e0e0; 
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a2e; /* Deep purple-blue background */
+    color: #dcd6f7;  /* Light purple text */
 }
 
 .container {
     width: 75%;
     margin: auto;
-    background-color: #1e1e1e; 
-    border-radius: 25px; /* More pronounced rounding */
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5); /* Cyan glow for futuristic vibe */
+    background-color: #262338;  /* Darker purple container */
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(189, 147, 249, 0.7); /* Purple glow for a futuristic feel */
     padding: 30px;
 }
 
 header {
-    background: linear-gradient(135deg, #009688, #005858); /* Gradient for header */
+    background: linear-gradient(135deg, #9d4edd, #6a3db8); /* Gradient from bright purple to dark purple */
     color: white;
     text-align: center;
     padding: 1em 0;
-    border-radius: 25px 25px 0 0; /* Rounded top */
+    border-radius: 25px 25px 0 0;
 }
 
 nav {
     display: flex;
     justify-content: space-around;
-    background: #0e0e0e; 
+    background: #1a1a2e;
 }
 
 nav ul {
@@ -41,27 +41,28 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #e0e0e0; 
+    color: #dcd6f7; 
     text-decoration: none;
     text-transform: uppercase;
     padding: 10px 20px;
-    border-radius: 50px; /* Fully rounded links */
-    transition: background-color 0.3s, color 0.3s; /* Transition for hover effect */
+    border-radius: 50px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 nav ul li a:hover {
-    background-color: #009688; /* Color change on hover */
-    color: #121212; /* Dark color for text on hover */
+    background-color: #9d4edd; 
+    color: #1a1a2e;
 }
 
 main {
     padding: 30px;
-    border-radius: 0 0 25px 25px; /* Rounded bottom */
+    border-radius: 0 0 25px 25px;
 }
 
 h2 {
-    font-size: 2.5em; /* Slightly larger header */
+    font-size: 2.5em;
     margin-bottom: 20px;
+    border-bottom: 3px solid #9d4edd;  /* Purple underline */
 }
 
 p {
@@ -71,7 +72,7 @@ p {
 footer {
     text-align: center;
     padding: 20px 0;
-    background: linear-gradient(135deg, #009688, #005858); /* Same gradient as header for consistency */
+    background: linear-gradient(135deg, #9d4edd, #6a3db8);
     color: white;
-    border-radius: 0 0 25px 25px; /* Rounded bottom */
+    border-radius: 0 0 25px 25px;
 }
